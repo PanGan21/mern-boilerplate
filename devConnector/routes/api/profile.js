@@ -65,7 +65,7 @@ router.post('/', [auth, [
         
         if (profile) {
             // Update
-            profile = await Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields}, { new: true });
+            profile = await Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields}, { new: true, upsert: true });
             return res.json(profile);
         }
         
